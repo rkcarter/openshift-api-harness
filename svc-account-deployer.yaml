@@ -1,0 +1,8 @@
+apiVersion: v1
+imagePullSecrets:
+  - name: deployer-dockercfg-vxnkj
+kind: ServiceAccount
+metadata:
+  name: deployer
+secrets:
+  - name: deployer-dockercfg-test
