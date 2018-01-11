@@ -113,17 +113,19 @@ def rollout_dc(project):
       print("Exception when calling OapiApi->create_dc: %s\n" % e)
 
 
-project = 'howdy2'
-create_proj(project)
+for i in range(1, 5):
+   project = "howdy" + str(i)
+   create_proj(project)
+   create_role_binding(project)
+   create_pvc(project)
+   create_dc(project, 'dc-mysql.yaml')
+   rollout_dc(project)
+   #i += 1
+   
+#create_dc('drupal.yaml')
 ##create_secrets(project)
 ##create_svc_accounts(project)
-create_role_binding(project)
-create_pvc(project)
-#create_dc('drupal.yaml')
-create_dc(project, 'dc-mysql.yaml')
-rollout_dc(project)
 #create_svc('front-end.yaml')
 #create_svc('db.yaml')
 #create_route()
-
 #pprint(resp)
