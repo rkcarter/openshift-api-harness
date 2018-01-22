@@ -17,7 +17,7 @@ def list_proj():
 	    print(project.metadata)
 
 def create_proj(project):
-	body = client.V1Project(metadata={'name': project}) # V1Project | 
+	body = client.V1Project(metadata={'name': project, 'annotations': {  'openshift.io/node-selector': 'region=on-premise'}}) # V1Project | 
 	pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
 
 	try: 
@@ -113,7 +113,7 @@ def rollout_dc(project):
       print("Exception when calling OapiApi->create_dc: %s\n" % e)
 
 
-for i in range(1, 5):
+for i in range(1, 4):
    project = "howdy" + str(i)
    create_proj(project)
    create_role_binding(project)
