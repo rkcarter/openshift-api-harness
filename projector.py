@@ -112,7 +112,18 @@ def rollout_dc(project):
    except ApiException as e:
       print("Exception when calling OapiApi->create_dc: %s\n" % e)
 
+def delete_proj(project):
 
+	name = project # str | project
+	pretty = 'pretty_example' # str | If 'true', then the output is pretty printed. (optional)
+
+	try:
+	    api_response = oapi.delete_project(name, pretty=pretty)
+	    return api_response
+	except ApiException as e:
+	    print("Exception when calling OapiApi->delete_project: %s\n" % e)
+
+# Range goes from [start] to [end -1]
 for i in range(1, 4):
    project = "howdy" + str(i)
    create_proj(project)
@@ -121,6 +132,14 @@ for i in range(1, 4):
    create_dc(project, 'dc-mysql.yaml')
    rollout_dc(project)
    #i += 1
+
+# Uncomment this section and comment out the section above to delete the
+# 	projects you created
+## Range goes from [start] to [end -1]
+#for i in range(1, 4):
+#   print (i)
+#   project = "howdy" + str(i)
+#   delete_proj(project)
    
 #create_dc('drupal.yaml')
 ##create_secrets(project)
